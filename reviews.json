@@ -1,6 +1,7 @@
 [
-  { "name": "John Doe", "comment": "Great products!", "rating": 5, "date": "2023-10-01" },
-  { "name": "Jane Smith", "comment": "Fast delivery and good packaging.", "rating": 4, "date": "2023-10-02" },
-  { "name": "Bob Johnson", "comment": "Excellent service and responsive support.", "rating":5, "date": "2023-10-03" }
+  { "name": "Tazbih", "comment": "Great products!", "rating": 5, "date": "2023-10-01" },
+  { "name": "Imam", "comment": "Fast delivery and good packaging.", "rating": 4, "date": "2023-10-02" },
+  { "name": "Hasib", "comment": "Excellent service and responsive support.", "rating":5, "date": "2023-10-03" }
 ]
+
 
