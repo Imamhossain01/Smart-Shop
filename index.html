@@ -5,6 +5,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmartShop – Online Product Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for better alignment */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    #banner-slides {
+      height: 400px;
+    }
+    
+    @media (max-width: 768px) {
+      #banner-slides {
+        height: 250px;
+      }
+    }
+    
+    /* Review slides container fix */
+    #reviewSlides {
+      width: 100%;
+    }
+    
+    #reviewSlides > div {
+      min-width: 100%;
+    }
+    
+    /* Custom review card styling */
+    .review-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      height: 100%;
+    }
+    
+    .review-photo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid #3b82f6;
+    }
+    
+    .review-name {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+      color: #1f2937;
+    }
+    
+    .review-rating {
+      color: #f59e0b;
+      margin-bottom: 1rem;
+    }
+    
+    .review-comment {
+      font-style: italic;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    
+    .review-date {
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+    
+    /* Product card styling for uniform size */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      height: 420px; /* Fixed height for all product cards */
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .product-image-container {
+      height: 220px; /* Fixed height for all product images */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background-color: #f9fafb;
+    }
+    
+    .product-image {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    
+    .product-info {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .product-title {
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      flex-grow: 1;
+    }
+    
+    .product-price-rating {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .product-price {
+      font-weight: bold;
+      color: #3b82f6;
+    }
+    
+    .product-rating {
+      color: #f59e0b;
+    }
+    
+    .add-to-cart-btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+    
+    .add-to-cart-btn:hover {
+      background-color: #2563eb;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -13,34 +163,34 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
       <h1 class="text-2xl font-bold text-blue-600">SmartShop</h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="#home" class="nav-link text-gray-700 hover:text-blue-500">Home</a></li>
-        <li><a href="#products" class="nav-link text-gray-700 hover:text-blue-500">Products</a></li>
-        <li><a href="#reviews" class="nav-link text-gray-700 hover:text-blue-500">Reviews</a></li>
-        <li><a href="#contact" class="nav-link text-gray-700 hover:text-blue-500">Contact</a></li>
+        <li><a href="#home" class="nav-link text-gray-700 hover:text-blue-500 transition-colors duration-200">Home</a></li>
+        <li><a href="#products" class="nav-link text-gray-700 hover:text-blue-500 transition-colors duration-200">Products</a></li>
+        <li><a href="#reviews" class="nav-link text-gray-700 hover:text-blue-500 transition-colors duration-200">Reviews</a></li>
+        <li><a href="#contact" class="nav-link text-gray-700 hover:text-blue-500 transition-colors duration-200">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Banner -->
-    <section id="home" class="pt-20">
-    <div class="relative w-full h-full overflow-hidden">
-        <div id="banner-slides" class="flex transition-transform duration-500 w-[200%] h-full">
-        <img src="banner1.jpg" alt="Banner 1" class="w-1/2 h-full object-cover">
-        <img src="banner2.jpg" alt="Banner 2" class="w-1/2 h-full object-cover">
-        </div>
-        <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded">❮</button>
-        <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded">❯</button>
+  <section id="home" class="pt-20">
+    <div class="relative w-full overflow-hidden">
+      <div id="banner-slides" class="flex transition-transform duration-500 w-[200%]">
+        <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Banner 1" class="w-1/2 h-full object-cover">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Banner 2" class="w-1/2 h-full object-cover">
+      </div>
+      <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70 transition duration-200">❮</button>
+      <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70 transition duration-200">❯</button>
     </div>
-    </section>
+  </section>
 
   <!-- Products -->
   <section id="products" class="max-w-7xl mx-auto px-4 py-12">
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
       <h2 class="text-3xl font-bold mb-4 md:mb-0">Our Products</h2>
-      <div class="flex items-center space-x-3">
-        <input id="search" type="text" placeholder="Search products..." class="border p-2 rounded w-60">
-        <select id="categoryFilter" class="border p-2 rounded">
-          <option value="all">All</option>
+      <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3">
+        <input id="search" type="text" placeholder="Search products..." class="border p-2 rounded w-full sm:w-60 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <select id="categoryFilter" class="border p-2 rounded w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="all">All Categories</option>
         </select>
       </div>
     </div>
@@ -49,19 +199,23 @@
 
   <!-- Cart Panel -->
   <div id="cartPanel" class="fixed right-0 top-0 w-80 bg-white shadow-lg h-full p-4 overflow-y-auto transform translate-x-full transition-transform duration-300 z-50">
-    <h3 class="text-xl font-semibold mb-3">🛍️ Your Cart</h3>
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="text-xl font-semibold">🛍️ Your Cart</h3>
+      <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700 transition duration-200">✕</button>
+    </div>
     <ul id="cartItems" class="space-y-2 mb-4"></ul>
-    <p id="subtotal" class="font-medium">Subtotal: 0 BDT</p>
-    <p id="discount" class="font-medium" data-percent="0">Discount: 0%</p>
-    <p id="delivery" class="font-medium">Delivery: 100 BDT</p>
-    <p id="total" class="font-semibold text-lg mt-2">Total: 0 BDT</p>
-    <p id="balance" class="font-semibold text-blue-600 mt-2">Balance: 1000 BDT</p>
+    <div class="border-t pt-4">
+      <p id="subtotal" class="font-medium flex justify-between"><span>Subtotal:</span> <span>0 BDT</span></p>
+      <p id="discount" class="font-medium flex justify-between" data-percent="0"><span>Discount:</span> <span>0%</span></p>
+      <p id="delivery" class="font-medium flex justify-between"><span>Delivery:</span> <span>100 BDT</span></p>
+      <p id="total" class="font-semibold text-lg mt-2 flex justify-between"><span>Total:</span> <span>0 BDT</span></p>
+      <p id="balance" class="font-semibold text-blue-600 mt-2 flex justify-between"><span>Balance:</span> <span>1000 BDT</span></p>
+    </div>
     <div class="mt-4 space-y-2">
-      <input id="coupon" type="text" placeholder="Enter coupon" class="border p-2 rounded w-full">
-      <button onclick="applyCoupon()" class="bg-green-500 text-white px-3 py-1 rounded w-full">Apply Coupon</button>
-      <button onclick="addMoney()" class="bg-blue-500 text-white px-3 py-1 rounded w-full">Add 1000 BDT</button>
-      <button onclick="checkout()" class="bg-yellow-500 text-white px-3 py-1 rounded w-full">Checkout</button>
-      <button onclick="closeCart()" class="bg-gray-400 text-white px-3 py-1 rounded w-full">Close Cart</button>
+      <input id="coupon" type="text" placeholder="Enter coupon" class="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-green-500">
+      <button onclick="applyCoupon()" class="bg-green-500 text-white px-3 py-2 rounded w-full hover:bg-green-600 transition duration-200">Apply Coupon</button>
+      <button onclick="addMoney()" class="bg-blue-500 text-white px-3 py-2 rounded w-full hover:bg-blue-600 transition duration-200">Add 1000 BDT</button>
+      <button onclick="checkout()" class="bg-yellow-500 text-white px-3 py-2 rounded w-full hover:bg-yellow-600 transition duration-200">Checkout</button>
     </div>
   </div>
 
@@ -71,8 +225,8 @@
       <h2 class="text-3xl font-bold mb-6">Customer Reviews</h2>
       <div class="relative overflow-hidden">
         <div id="reviewSlides" class="flex transition-transform duration-500"></div>
-        <button onclick="prevReview()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded">❮</button>
-        <button onclick="nextReview()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded">❯</button>
+        <button onclick="prevReview()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded hover:bg-gray-800 transition duration-200">❮</button>
+        <button onclick="nextReview()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded hover:bg-gray-800 transition duration-200">❯</button>
       </div>
     </div>
   </section>
@@ -81,23 +235,32 @@
   <section id="contact" class="max-w-4xl mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold mb-6 text-center">Contact Us</h2>
     <form id="contactForm" class="space-y-4">
-      <input id="name" type="text" placeholder="Your Name" class="border p-2 w-full rounded" required>
-      <input id="email" type="email" placeholder="Your Email" class="border p-2 w-full rounded" required>
-      <textarea id="message" placeholder="Your Message" class="border p-2 w-full rounded" required></textarea>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+      <input id="name" type="text" placeholder="Your Name" class="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+      <input id="email" type="email" placeholder="Your Email" class="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+      <textarea id="message" placeholder="Your Message" class="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5" required></textarea>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full md:w-auto hover:bg-blue-700 transition duration-200">Send</button>
     </form>
-    <p id="formMsg" class="text-green-600 mt-4 hidden">Thank you for your message!</p>
+    <p id="formMsg" class="text-green-600 mt-4 hidden">Thank you for your message! We'll get back to you soon.</p>
   </section>
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 text-center">
     <p>© 2025 SmartShop | All rights reserved.</p>
-    <button onclick="scrollToTop()" class="mt-3 bg-blue-500 px-3 py-1 rounded">Back to Top</button>
+    <button onclick="scrollToTop()" class="mt-3 bg-blue-500 px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Back to Top</button>
   </footer>
 
-  
-<script>
+  <!-- Cart Icon -->
+  <div class="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg z-40 cursor-pointer hover:bg-blue-700 transition duration-200" onclick="openCart()">
+    <span class="relative">
+      🛒
+      <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+    </span>
+  </div>
+
+  <script>
+    // =========================
     // Banner Slide
+    // =========================
     let slideIndex = 0;
     const slides = document.getElementById("banner-slides");
     const totalSlides = 2; // number of images
@@ -113,21 +276,31 @@
     function updateSlide() {
         slides.style.transform = `translateX(-${slideIndex * 50}%)`;
     }
-    setInterval(nextSlide, 5000);
+    if (totalSlides > 0) {
+      setInterval(nextSlide, 5000);
+    }
 
-
-    // Fetch Products
+    // =========================
+    // Products
+    // =========================
     const productList = document.getElementById("productList");
     const categoryFilter = document.getElementById("categoryFilter");
     let products = [];
 
     async function loadProducts() {
-      const res = await fetch("https://fakestoreapi.com/products");
-      products = await res.json();
-      // Ensure prices >= 500
-      products = products.map(p => ({ ...p, price: Math.max(Math.round(p.price), 500) }));
-      displayProducts(products);
-      populateCategories();
+      try {
+        const res = await fetch("https://fakestoreapi.com/products");
+        products = await res.json();
+        products = products.map(p => ({ 
+          ...p, 
+          price: Math.max(Math.round(p.price * 100), 500) 
+        }));
+        displayProducts(products);
+        populateCategories();
+      } catch (error) {
+        console.error("Error loading products:", error);
+        productList.innerHTML = "<p class='text-center col-span-full py-8'>Failed to load products. Please try again later.</p>";
+      }
     }
 
     function populateCategories() {
@@ -135,25 +308,33 @@
       categories.forEach(cat => {
         const opt = document.createElement("option");
         opt.value = cat;
-        opt.textContent = cat;
+        opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
         categoryFilter.appendChild(opt);
       });
     }
 
     function displayProducts(items) {
       productList.innerHTML = "";
+      if (items.length === 0) {
+        productList.innerHTML = "<p class='text-center col-span-full py-8'>No products found.</p>";
+        return;
+      }
       items.forEach(p => {
         const div = document.createElement("div");
-        div.className = "bg-white p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col items-center";
+        div.className = "product-card";
         div.innerHTML = `
-          <div class="w-full aspect-square">
-            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover rounded mb-2">
+          <div class="product-image-container">
+            <img src="${p.image}" alt="${p.title}" class="product-image">
           </div>
-          <h3 class="font-semibold text-sm line-clamp-2 text-center">${p.title}</h3>
-          <p class="text-blue-600 font-bold mt-1">${p.price} BDT</p>
-          <p class="text-yellow-500">⭐ ${p.rating.rate}</p>
-          <button onclick="addToCart(${p.id}, ${p.price})" class="bg-blue-500 text-white px-3 py-1 mt-2 rounded w-full">Add to Cart</button>
-        `;
+          <div class="product-info">
+            <h3 class="product-title line-clamp-2">${p.title}</h3>
+            <div class="product-price-rating">
+              <p class="product-price">${p.price} BDT</p>
+              <p class="product-rating">⭐ ${p.rating.rate}</p>
+            </div>
+            <button onclick="addToCart(${p.id}, ${p.price})" class="add-to-cart-btn">Add to Cart</button>
+          </div>`
+          ;
         productList.appendChild(div);
       });
     }
@@ -161,17 +342,28 @@
     // Search & Filter
     document.getElementById("search").addEventListener("input", e => {
       const val = e.target.value.toLowerCase();
-      displayProducts(products.filter(p => p.title.toLowerCase().includes(val)));
-    });
-    categoryFilter.addEventListener("change", e => {
-      const val = e.target.value;
-      displayProducts(val === "all" ? products : products.filter(p => p.category === val));
+      const category = categoryFilter.value;
+      let filtered = products;
+      if (category !== "all") filtered = filtered.filter(p => p.category === category);
+      if (val) filtered = filtered.filter(p => p.title.toLowerCase().includes(val));
+      displayProducts(filtered);
     });
 
+    categoryFilter.addEventListener("change", e => {
+      const val = e.target.value;
+      const searchVal = document.getElementById("search").value.toLowerCase();
+      let filtered = val === "all" ? products : products.filter(p => p.category === val);
+      if (searchVal) filtered = filtered.filter(p => p.title.toLowerCase().includes(searchVal));
+      displayProducts(filtered);
+    });
+
+    // =========================
     // Cart System
+    // =========================
     let cart = [];
     let balance = parseInt(localStorage.getItem("balance")) || 1000;
     const cartPanel = document.getElementById("cartPanel");
+    const cartCount = document.getElementById("cartCount");
 
     function addToCart(id, price) {
       const item = products.find(p => p.id === id);
@@ -194,35 +386,40 @@
       cart.forEach(item => {
         subtotal += item.price * item.qty;
         const li = document.createElement("li");
-        li.className = "flex justify-between items-center border p-2 rounded";
+        li.className = "flex justify-between items-center border-b py-2";
         li.innerHTML = `
-          <div class="flex items-center space-x-2">
-            <img src="${item.image}" alt="${item.title}" class="w-12 h-12 object-cover rounded">
-            <span>${item.title.substring(0,15)}... x${item.qty}</span>
+          <div>
+            <p class="font-medium">${item.title}</p>
+            <p class="text-gray-500 text-sm">Qty: ${item.qty}</p>
           </div>
-          <button onclick="removeFromCart(${item.id})" class="text-red-600 font-bold">×</button>
-        `;
+          <div>
+            <p>${item.price * item.qty} BDT</p>
+            <button onclick="removeFromCart(${item.id})" class="text-red-500 text-sm hover:underline">Remove</button>
+          </div>`
+          ;
         cartItems.appendChild(li);
       });
-
-      let delivery = cart.length > 0 ? 100 : 0;
-      let discount = (document.getElementById("discount").dataset.percent || 0) / 100;
-      let total = subtotal + delivery - subtotal * discount;
-
-      document.getElementById("subtotal").innerText = `Subtotal: ${subtotal.toFixed(2)} BDT`;
-      document.getElementById("delivery").innerText = `Delivery: ${delivery} BDT`;
-      document.getElementById("total").innerText = `Total: ${total.toFixed(2)} BDT`;
-      document.getElementById("balance").innerText = `Balance: ${balance} BDT`;
-
-      if (total > balance) console.warn("⚠️ Not enough balance!");
+      const discountPercent = parseInt(document.getElementById("discount").dataset.percent) || 0;
+      const delivery = 100;
+      const discountAmt = subtotal * discountPercent / 100;
+      const total = subtotal - discountAmt + delivery;
+      document.getElementById("subtotal").children[1].textContent = `${subtotal} BDT`;
+      document.getElementById("total").children[1].textContent = `${total} BDT`;
+      document.getElementById("balance").children[1].textContent = `${balance} BDT`;
+      cartCount.textContent = cart.length;
+      cartCount.style.display = cart.length > 0 ? "flex" : "none";
     }
+
+    function openCart() { cartPanel.classList.remove("translate-x-full"); }
+    function closeCart() { cartPanel.classList.add("translate-x-full"); }
 
     function applyCoupon() {
       const code = document.getElementById("coupon").value.trim();
-      if (code === "SMART10") {
-        document.getElementById("discount").dataset.percent = 10;
-        document.getElementById("discount").innerText = "Discount: 10%";
-      } else alert("Invalid Coupon!");
+      let percent = 0;
+      if (code === "DISCOUNT10") percent = 10;
+      else if (code === "DISCOUNT20") percent = 20;
+      document.getElementById("discount").dataset.percent = percent;
+      document.getElementById("discount").children[1].textContent = percent + "%";
       updateCart();
     }
 
@@ -233,61 +430,74 @@
     }
 
     function checkout() {
-      alert("⚠️ Payment method under maintenance today. Please come back tomorrow.");
+      const total = parseInt(document.getElementById("total").children[1].textContent);
+      if (total > balance) alert("Insufficient balance!");
+      else {
+        balance -= total;
+        localStorage.setItem("balance", balance);
+        cart = [];
+        updateCart();
+        alert("Checkout successful!");
+      }
     }
 
-    function openCart() { cartPanel.classList.remove("translate-x-full"); }
-    function closeCart() { cartPanel.classList.add("translate-x-full"); }
+    // =========================
+    // Reviews - Easy Edit
+    // =========================
+    const reviews = [
+      { name: "Tazbih", comment: "Great products! The quality exceeded my expectations.", rating: 5, date: "2025-01-01", img: "review1.jpg" },
+      { name: "Imam", comment: "Fast delivery and excellent service.", rating: 4, date: "2025-01-02", img: "review2.jpg" },
+      { name: "Hasib", comment: "Excellent service and product quality.", rating: 5, date: "2025-01-03", img: "review3.jpg" },
+    ];
 
-    // Reviews
     const reviewSlides = document.getElementById("reviewSlides");
     let reviewIndex = 0;
-    const reviews = [
-      { name:"Tazbih", comment:"Great products!", rating:5, date:"2025-01-01", img:"review1.jpg" },
-      { name:"Imam", comment:"Fast delivery.", rating:4, date:"2025-01-02", img:"review2.jpg" },
-      { name:"Hasib", comment:"Excellent service.", rating:5, date:"2025-01-03", img:"review3.jpg" }
-    ];
-    reviews.forEach(r => {
-      const div = document.createElement("div");
-      div.className = "w-full flex-shrink-0 p-4 flex items-center space-x-4";
-      div.innerHTML = `
-        <img src="${r.img}" alt="${r.name}" class="w-16 h-16 object-cover rounded-full">
-        <div class="text-left">
-          <p class="italic">"${r.comment}"</p>
-          <p class="font-semibold mt-1">${r.name} – ⭐${r.rating}</p>
-          <p class="text-sm text-gray-500">${r.date}</p>
-        </div>
-      `;
-      reviewSlides.appendChild(div);
-    });
-    function nextReview() { reviewIndex = (reviewIndex + 1) % reviewSlides.children.length; updateReview(); }
-    function prevReview() { reviewIndex = (reviewIndex - 1 + reviewSlides.children.length) % reviewSlides.children.length; updateReview(); }
-    function updateReview() { reviewSlides.style.transform = `translateX(-${reviewIndex * 100}%)`; }
-    setInterval(nextReview, 4000);
 
-    // Contact Form
-    document.getElementById("contactForm").addEventListener("submit", e => {
-      e.preventDefault();
-      document.getElementById("formMsg").classList.remove("hidden");
-      e.target.reset();
-    });
-
-    // Scroll to Top
-    function scrollToTop() { window.scrollTo({ top:0, behavior:"smooth" }); }
-
-    // Active Nav Highlight
-    const navLinks = document.querySelectorAll(".nav-link");
-    window.addEventListener("scroll", () => {
-      const fromTop = window.scrollY + 100;
-      navLinks.forEach(link => {
-        const section = document.querySelector(link.getAttribute("href"));
-        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-          link.classList.add("text-blue-500");
-        } else link.classList.remove("text-blue-500");
+    function renderReviews() {
+      reviewSlides.innerHTML = "";
+      reviews.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "w-full flex-shrink-0 p-4";
+        div.innerHTML = `
+          <div class="review-card">
+            <img src="${r.img}" alt="${r.name}" class="review-photo">
+            <p class="review-name">${r.name}</p>
+            <div class="review-rating">${'⭐'.repeat(r.rating)}</div>
+            <p class="review-comment">"${r.comment}"</p>
+            <p class="review-date">${r.date}</p>
+          </div>
+        `;
+        reviewSlides.appendChild(div);
       });
+      updateReview();
+    }
+
+    function nextReview() { reviewIndex = (reviewIndex + 1) % reviews.length; updateReview(); }
+    function prevReview() { reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length; updateReview(); }
+    function updateReview() { reviewSlides.style.transform = `translateX(-${reviewIndex * 100}%)`; }
+
+    if (reviews.length > 1) setInterval(nextReview, 5000);
+    renderReviews();
+
+    // =========================
+    // Contact Form
+    // =========================
+    const contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", e => {
+      e.preventDefault();
+      contactForm.reset();
+      document.getElementById("formMsg").classList.remove("hidden");
+      setTimeout(()=>document.getElementById("formMsg").classList.add("hidden"), 5000);
     });
 
+    // =========================
+    // Scroll to top
+    // =========================
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+
+    // Load products initially
     loadProducts();
   </script>
+
 </body>
 </html>
